@@ -1,13 +1,502 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --marine-blue: hsl(213, 96%, 18%);
+  --purplish-blue: hsl(243, 100%, 62%);
+  --pastel-blue: hsl(228, 100%, 84%);
+  --light-blue: hsl(206, 94%, 87%);
+  --strawberry-red: hsl(354, 84%, 57%);
+
+  --cool-gray: hsl(231, 11%, 63%);
+  --light-gray: hsl(229, 24%, 87%);
+  --magnolia: hsl(217, 100%, 97%);
+  --alabaster: hsl(231, 100%, 99%);
+  --white: hsl(0, 0%, 100%);
+}
+*,*::after, *::before{
+  box-sizing: border-box;
+  margin: 0;
+}
+*:focus{
+  outline: none;
+}
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: var(--magnolia);
+  color: var(--marine-blue);
+}
+h1,h2,h3,h4,p{
+  margin: 1rem 0;
+}
+ul{
+  padding: 0;
+  list-style: none;
+}
+input, button{
+  font-family: inherit;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+/* utility classes */
+.cool-gray{
+  color: var(--cool-gray);
+}
+.small{
+  font-size: 0.75rem;
+  padding-top: 0.25rem;
+}
+/* header component */
+header nav{
+  background: url(./images/bg-sidebar-mobile.svg) no-repeat center center / cover;
+  min-height: 27.5vh;
+}
+header nav ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--white);
+  padding-top: 2.75rem;
+}
+header nav ul li a{
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 0.5rem 0.75rem;
+}
+header nav ul li a:hover, header nav ul li a.active{
+  background-color: var(--light-blue);
+  color: var(--marine-blue);
+}
+.link-info{
+  display: none;
+}
+/* error page */
+.error-page{
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.5;
+}
+/* forms,  personal data page*/
+.form-data{
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  margin: 0 1rem;
+  padding: 2rem 1.5rem 1rem;
+  transform: translateY(-5rem);
+}
+.form-data h1{
+  margin-top: 0;
+  font-size: 1.6rem;
+}
+.form-data p{
+  color: var(--cool-gray);
+}
+.input-div label{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.input-div label span:nth-child(2){
+  color: var(--strawberry-red);
+  font-weight: 500;
+}
+.input-div input{
+  display: block;
+  width: 100%;
+  margin: 0.25rem 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cool-gray);
+  border-radius: 5px;
+}
+.input-div input::placeholder{
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--cool-gray);
+}
+.input-div input:focus{
+  border: 1px solid var(--marine-blue);
+}
+.form-submit{
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--white);
+}
+.form-submit a{
+  font-weight: 500;
+}
+.form-submit a:hover{
+  color: var(--marine-blue);
+}
+.submit-btn{
+  background-color: var(--marine-blue);
+  color: var(--white);
+  border: 0;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.submit-btn:hover{
+  background-color: var(--purplish-blue);
+}
+/* select plan page*/
+.radio-container{
+  display: flex;
+  margin: 0.75rem 0;
+}
+.radio-container label{
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cool-gray);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.radio-container label:hover{
+  border: 1px solid var(--marine-blue);
+}
+input[type='radio'], .checkbox input[type='checkbox']{
+  -webkit-appearance: none;
+  appearance: none;
+}
+.radio-container input:checked + label{
+  border: 1px solid var(--marine-blue);
+  background-color: var(--magnolia);
+}
+.plan-name{
+  display: block;
+  font-weight: 700;
+  padding: 0.15rem 0;
+}
+.plan-price{
+  font-size: 0.9rem;
+  padding-bottom: 0.25rem;
+}
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 1.5rem 0 1rem;
+  padding: 1rem;
+  background-color: var(--magnolia);
+  border-radius: 0.5rem;
+}
+.checkbox-holder{
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.25rem;
+  padding: 0.25rem 0;
+  margin: 0 1rem;
+  background-color: var(--marine-blue);
+  border-radius: 100vw;
+  cursor: pointer;
+}
+.checkbox-ball{
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--white);
+}
+.checkbox-ball.checked{
+  right: 4px;
+  left: auto;
+}
+/* adds-on page */
+.checkbox-flex{
+  display: flex;
+  gap: 1rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cool-gray);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.checkbox-flex:hover{
+  border: 1px solid var(--marine-blue);
+}
+.checkbox-flex input[type='checkbox']{
+  width: 1.5rem;
+  accent-color: var(--purplish-blue);
+}
+.checkbox-flex:has(input[type='checkbox']:checked){
+  border: 1px solid var(--marine-blue);
+  background-color: var(--magnolia);
+}
+.add-on-checkbox{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.add-on-checkbox h3, .add-on-checkbox p{
+  margin: 0;
+}
+.add-on-checkbox h3{
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.add-price{
+  font-size: 0.9rem;
+  color: var(--purplish-blue);
+}
+/* finishing up page */
+.overview-div{
+  background-color: var(--magnolia);
+  border-radius: 0.5rem;
+  padding: 1rem 1rem 0.5rem;
+  font-size: 0.9rem;
+}
+.overview-div a{
+  text-decoration: underline;
+}
+.overview-div > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+.overview-plan a{
+  font-weight: 400;
+  color: var(--cool-gray);
+}
+.overview-div a:hover{
+  color: var(--purplish-blue);
+}
+.overview-div ul{
+  color: var(--cool-gray);
+  border-top: 1px solid var(--light-gray);
+  margin-top: 0.75rem;
+}
+.overview-div ul li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+.overview-div ul li .overview-price{
+  color: var(--marine-blue);
+}
+.total-div{
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total{
+  font-size: 0.9rem;
+  color: var(--cool-gray);
+}
+.total-price{
+  color: var(--purplish-blue);
+  font-weight: 500;
+}
+.confirm-btn{
+  background-color: var(--purplish-blue);
+}
+.confirm-btn:hover{
+  background-color: var(--pastel-blue);
+}
+.submit-btn:disabled{
+  background-color: var(--strawberry-red);
+  color: var(--light-gray);
+  cursor: auto;
+}
+/* thank you page */
+.thank-you-data{
+  text-align: center;
+  padding-bottom: 4rem;
+}
+.thank-you-data img{
+  width: 3.5rem;
+  margin-top: 2.5rem;
+}
+.thank-you-data h1{
+  font-size: 1.5rem;
+  margin: 1rem 0 0;
+}
+.thank-you-data p{
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+.attribution{
+  display: block;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--cool-gray);
+}
+.attribution a{
+  text-decoration: underline;
+  font-weight: 500;
+}
+.attribution a:hover{
+  color: var(--marine-blue);
+}
+/* DESKTOP */
+@media (min-width: 1000px){
+  body{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+  }
+  .container{
+    display: flex;
+    justify-content: space-between;
+    min-height: 85vh;
+    width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+  }
+  /* navbar (header) */
+  header nav{
+    background: url(./images/bg-sidebar-desktop.svg) no-repeat center center / cover;
+    border-radius: 10px;
+    min-width: 250px;
+    height: 100%;
+    padding: 0 1.5rem;
+  }
+  header nav ul{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+  header nav ul li{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  header nav ul li a{
+    padding: 0.4rem 0.75rem;
+  }
+  .link-info{
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+  .link-info .step-num{
+    font-size: 0.7rem;
+    padding-bottom: 0.25rem;
+  }
+  .link-info .step-name{
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  /* error page */
+  .error-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* home page */
+  .form-container{
+    margin: 0 auto;
+    flex-basis: 58.5%;
+  }
+  .form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+  .form-data{
+    transform: translateY(0);
+    margin: 0;
+    padding: 1rem 0;
+  }
+  .form-data h1{
+    font-size: 2rem;
+  }
+  .form-data p{
+    padding-bottom: 1.5rem;
+  }
+  .form-submit{
+    position: static;
+    margin: 0;
+    padding: 0;
+  }
+  .input-div input{
+    margin: 0.5rem 0 1rem;
+    padding: 1rem;
+  }
+  .submit-btn{
+    padding: 0.75rem 1.25rem;
+  }
+  /* plan page */
+  .radio-div{
+    display: flex;
+    gap: 1rem;
+  }
+  .radio-container{
+    min-width: 140px;
+    margin: 0;
+  }
+  .radio-container label{
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .checkbox{
+    padding: 0.75rem 1rem;
+  }
+  /* add ons page, finishing up page */
+  .checkbox-flex{
+    gap: 1.5rem;
+    padding: 0.5rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .add-on-checkbox div:first-child{
+    transform: translateY(0.75rem);
+  }
+  .overview-div{
+    margin-top: 1rem;
+    padding: 1.25rem 1.5rem 1rem;
+  }
+  .overview-plan a{
+    display: inline-block;
+    margin: 0.25rem 0 0.5rem;
+  }
+  .total-div{
+    padding: 1.5rem 1rem 1rem;
+  }
+  .total-price{
+    font-size: 1.25rem;
+  }
+  /* thank you page */
+  .thank-you-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+  }
+  .thank-you-data{
+    padding: 0 2.5rem 4rem;
+  }
+  .thank-you-data img{
+    width: 5rem;
+    margin: 0 0 1.25rem;
+  }
+  .thank-you-data h1{
+    margin: 1rem 0;
+  }
 }
